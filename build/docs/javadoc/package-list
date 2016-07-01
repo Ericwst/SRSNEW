@@ -1,0 +1,9 @@
+cn.jagl.aq.action
+cn.jagl.aq.common.dao
+cn.jagl.aq.common.dao.impl
+cn.jagl.aq.dao
+cn.jagl.aq.dao.impl
+cn.jagl.aq.domain
+cn.jagl.aq.service
+cn.jagl.aq.service.impl
+cn.jagl.util
