@@ -9,12 +9,11 @@
 4. 使用（PD或visio）画出你所实现的系统领域类图和至少两个关键场景的顺序图。
 ###领域类图
 ![领域类图](https://raw.githubusercontent.com/Ericwst/SRSNEW/master/%E6%98%BE%E7%A4%BA%E8%AF%BE%E6%97%B6%E8%AE%A1%E5%88%92.jpg "title")
-
 ###关键顺序图
+###选课
 ![选课](https://raw.githubusercontent.com/Ericwst/SRSNEW/master/%E9%80%89%E8%AF%BE.jpg "选课")
-
+###显示课时计划
 ![显示课时计划](https://raw.githubusercontent.com/Ericwst/SRSNEW/master/%E6%98%BE%E7%A4%BA%E8%AF%BE%E6%97%B6%E8%AE%A1%E5%88%92.jpg "title")
-
 5. 采用三层结构实现基于web的SRS系统，后台采用sqlite为数据存储
 
 6. 可以采用guitar销售V3的系统架构也可以自行选择，但要求业务逻辑主要由model完成，数据源可切换
