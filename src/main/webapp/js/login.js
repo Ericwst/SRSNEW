@@ -1,0 +1,41 @@
+/**
+ * 
+ */
+$(function(){
+	$("#login").dialog({
+		title:'神宁安全风险预控管理信息系统',
+		width:300,
+		height:195,
+		iconCls:'icon-login',
+		closable:false,
+		draggable:false,
+		modal:true,
+		buttons:'#btn'
+	});
+	$("#personid").validatebox({
+		required:true,
+		missingMessage:'请输入账号！',
+		iconCls:'icon-man',
+		iconAlign:'right',
+	});
+	$("#password").validatebox({
+		required:true, 
+		missingMessage:'请输入密码！',
+	});
+	if(!$("#personid").validatebox('isValid')){
+		$("#personid").focus();
+	}else if(!$("#password").validatebox('isValid')){
+		$("#password").focus();
+	}
+	//提交
+	$("#btn a").click(function(){
+		if(!$("#personid").validatebox('isValid')){
+			$("#personid").focus();
+		}else if(!$("#password").validatebox('isValid')){
+			$("#password").focus();
+		}else{
+			//发起ajax请求
+			alert("去数据库验证");
+		}
+	});
+});
