@@ -13,4 +13,6 @@ public class TranscriptDaoImpl extends BaseDaoHibernate4<Transcript> implements 
 				.setInteger("transcriptId", transcriptId);
 		return (Transcript) query.uniqueResult();
 	}
+
+
 }

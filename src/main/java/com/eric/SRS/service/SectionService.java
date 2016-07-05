@@ -13,4 +13,6 @@ public interface SectionService {
 	void deleteSection(int sectionNo);
 
 	Section getBySectionNo(int sectionNo);
+
+	void updateSection(Section section);
 }

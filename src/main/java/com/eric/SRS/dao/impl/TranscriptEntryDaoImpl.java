@@ -6,6 +6,7 @@ import org.hibernate.Query;
 
 import com.eric.SRS.dao.TranscriptEntryDao;
 import com.eric.SRS.model.Section;
+import com.eric.SRS.model.Student;
 import com.eric.SRS.model.TranscriptEntry;
 
 public class TranscriptEntryDaoImpl extends BaseDaoHibernate4<TranscriptEntry> implements TranscriptEntryDao {
@@ -20,5 +21,10 @@ public class TranscriptEntryDaoImpl extends BaseDaoHibernate4<TranscriptEntry> i
 				.createQuery("select t from TranscriptEntry t where transcriptEntryId=:transcriptEntryId")
 				.setInteger("transcriptEntryId", transcriptEntryId);
 		return (TranscriptEntry) query.uniqueResult();
+	}
+	
+	@Override
+	public List<TranscriptEntry> getByStudent(Student student) {
+		return find(" from  TranscriptEntry where student_id= "+student.getId());
 	}
 }

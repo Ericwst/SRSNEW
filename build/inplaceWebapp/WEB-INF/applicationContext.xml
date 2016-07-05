@@ -14,13 +14,12 @@
 	http://www.springframework.org/schema/context/spring-context-4.0.xsd
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
-
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:MySQLconn.properties</value>
-				<!-- <value>classpath:SQLiteconn.properties</value> -->
+				 <value>classpath:MySQLconn.properties</value> 
+				<!--<value>classpath:SQLiteconn.properties</value>-->
 			</list>
 		</property>
 	</bean>
@@ -179,5 +178,26 @@
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
 		p:sessionFactory-ref="sessionFactory" />
-
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- AOP配置的元素 -->
+	<aop:config>
+		<!-- 配置一个切入点 -->
+		<aop:pointcut id="ericPointcut1"
+			expression="execution(* com.eric.SRS.dao.impl.*.*(..))" />
+		<aop:pointcut id="ericPointcut2"
+			expression="execution(* com.eric.SRS.service.impl.*.*(..))" />
+		<aop:pointcut id="ericPointcut3" expression="execution(* com.eric.SRS.dao.*.*(..))" />
+		<aop:pointcut id="ericPointcut4"
+			expression="execution(* com.eric.SRS.service.*.*(..))" />
+		<!-- 指定在myPointcut切入点应用txAdvice事务增强处理 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="ericPointcut1" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="ericPointcut2" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="ericPointcut3" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="ericPointcut4" />
+	</aop:config>
 </beans>

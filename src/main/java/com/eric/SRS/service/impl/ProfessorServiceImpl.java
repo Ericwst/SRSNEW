@@ -30,4 +30,9 @@ public class ProfessorServiceImpl implements ProfessorService {
 		return professorDao.findAll(Professor.class);
 	}
 
+	@Override
+	public void updateProfessor(Professor professor) {
+		professorDao.update(professor);
+		
+	}
 }

@@ -6,7 +6,6 @@ import com.eric.SRS.enumeration.EnrollmentStatus;
 import com.eric.SRS.model.Section;
 import com.eric.SRS.model.Student;
 
-
 public interface StudentService {
 
 	int addStudent(Student student);
@@ -16,4 +15,9 @@ public interface StudentService {
 	public EnrollmentStatus enroll(Section section, Student student);
 
 	void deleteStudent(int id);
+
+	public Boolean login(Student student);
+	
+	public Student getBySsn(Student student);
+
 }

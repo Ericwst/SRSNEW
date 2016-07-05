@@ -13,5 +13,8 @@ public class StudentDaoImpl extends BaseDaoHibernate4<Student> implements Studen
 		return (Student) query.uniqueResult();
 	}
 	
-
+	@Override
+	public Student getBySsn(Student student) {
+		return find(" from Student  where ssn like '"+student.getSsn()+"'").get(0);
+	}
 }

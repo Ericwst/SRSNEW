@@ -42,4 +42,9 @@ public class SectionServiceImpl implements SectionService {
 		return sectionDao.getBySectionNo(sectionNo);
 	}
 
+	@Override
+	public void updateSection(Section section) {
+		sectionDao.update(section);
+	}
+
 }

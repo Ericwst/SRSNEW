@@ -60,33 +60,37 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void deleteStudent(int id) {
 		studentDao.delete(Student.class, id);
-		;
 	}
 
-	public EnrollmentStatus enroll(Section section,Student student) {
-		Transcript transcript =new Transcript();
+	@Override
+	public Student getBySsn(Student student) {
+		return studentDao.getBySsn(student);
+	}
+
+	public EnrollmentStatus enroll(Section section, Student student) {
+		Transcript transcript = new Transcript();
 		transcript.setTranscriptEntries(transcriptEntryDao.getBySection(section));
-		student=studentDao.getByPersonId(student.getId());
-		section=sectionDao.getBySectionNo(section.getSectionNo());
-		List<Student> students=new ArrayList<>();
-		List<TranscriptEntry> transcriptEntries=transcriptEntryDao.getBySection(section);
-		Map<String, Student> enrollStudents=new HashMap<>();
+		student = studentDao.getByPersonId(student.getId());
+		section = sectionDao.getBySectionNo(section.getSectionNo());
+		List<Student> students = new ArrayList<>();
+		List<TranscriptEntry> transcriptEntries = transcriptEntryDao.getBySection(section);
+		Map<String, Student> enrollStudents = new HashMap<>();
 		for (Iterator<TranscriptEntry> iterator = transcriptEntries.iterator(); iterator.hasNext();) {
 			TranscriptEntry transcriptEntry = (TranscriptEntry) iterator.next();
 			students.add(transcriptEntry.getStudent());
 		}
 		for (Iterator<Student> iterator = students.iterator(); iterator.hasNext();) {
 			Student student2 = (Student) iterator.next();
-			enrollStudents.put(student2.getSsn(),student2);
+			enrollStudents.put(student2.getSsn(), student2);
 		}
-		
+
 		section.setEnrolledStudents(enrollStudents);
-	//	section.setTranscriptEntries(transcriptEntryDao.findBySection(section));
-		EnrollmentStatus enrollmentStatus=section.enroll(student);
-//		EnrollmentStatus enrollmentStatus=EnrollmentStatus.success;
-	//	student.addSection(section);
-		if(enrollmentStatus.equals(EnrollmentStatus.success)){
-			TranscriptEntry transcriptEntry=new TranscriptEntry();
+		// section.setTranscriptEntries(transcriptEntryDao.findBySection(section));
+		EnrollmentStatus enrollmentStatus = section.enroll(student);
+		// EnrollmentStatus enrollmentStatus=EnrollmentStatus.success;
+		// student.addSection(section);
+		if (enrollmentStatus.equals(EnrollmentStatus.success)) {
+			TranscriptEntry transcriptEntry = new TranscriptEntry();
 			transcriptEntry.setStudent(student);
 			transcriptEntry.setSection(section);
 			transcriptEntryDao.save(transcriptEntry);
@@ -94,4 +98,8 @@ public class StudentServiceImpl implements StudentService {
 		return enrollmentStatus;
 	}
 
+	@Override
+	public Boolean login(Student student) {
+		return studentDao.getBySsn(student).getPassword().equals(student.getPassword());
+	}
 }

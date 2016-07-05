@@ -35,6 +35,14 @@ dependencies {
     		'ognl:ognl:3.0.6',
 			'org.apache.struts:struts2-config-browser-plugin:2.3.24.1',
 			'org.apache.poi:poi:3.14'
+
+	// https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc
+compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.7.2'
+
+
+	
+
+	
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add

@@ -19,8 +19,8 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 			<list>
-				<value>classpath:MySQLconn.properties</value>
-				<!-- <value>classpath:SQLiteconn.properties</value> -->
+				<!--<value>classpath:MySQLconn.properties</value>-->
+				 <value>classpath:SQLiteconn.properties</value> 
 			</list>
 		</property>
 	</bean>
