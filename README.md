@@ -26,6 +26,7 @@
   ![SQLite]( https://raw.githubusercontent.com/Ericwst/SRSNEW/master/picture/7.jpg "title")
   ![Mysql]( https://raw.githubusercontent.com/Ericwst/SRSNEW/master/picture/8.jpg "title")
   三层结构分别为数据访问层com.eric.SRS.dao(com.eric.SRS.dao.impl)，领域逻辑层com.eric.SRS.model\com.eric.SRS.service(com.eric.SRS.service.impl)，表示层com.eric.SRS.action。数据访问层采用Hibernate，利用Spring统一托管，动态加载properties数据，通过加载sqlite转换文件可以实现mysql、sqlite之间的任意切换。
+  
 6 可以采用guitar销售V3的系统架构也可以自行选择，但要求业务逻辑主要由model完成，数据源可切换
 
   ![model]( https://raw.githubusercontent.com/Ericwst/SRSNEW/master/picture/5.jpg "title")
