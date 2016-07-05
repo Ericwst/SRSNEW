@@ -3,12 +3,10 @@
   
   已通读《begining java object：从概念到代码》整本书，对List、Map、Set等几种对象集合有了透彻的认识，对继承、封装、多态有了更加深刻的认识，学会了如何面向接口编程，降低代码间的耦合。
 2. 使用OOA&D构建SRS系统。
-3. 
 ![整体文件结构]( https://raw.githubusercontent.com/Ericwst/SRSNEW/master/picture/4.jpg "title")
 
    本Github运用面向对象的方式，并采用Struts2+Hibernate+Spring4的方式进行整合开发，构建了选课SRS系统。
 3. 根据书中示例类图(P430)构建系统领域模型并实现测试
-4. 
 ![测试]( https://raw.githubusercontent.com/Ericwst/SRSNEW/master/picture/10.jpg "title")
 
 4. 使用（PD或visio）画出你所实现的系统领域类图和至少两个关键场景的顺序图。
