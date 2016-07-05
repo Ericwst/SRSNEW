@@ -5,94 +5,11 @@
 <struts>
 
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
-	<constant name="struts.devMode" value="true" /><!--开发模式 -->
+	<constant name="struts.devMode" value="true" /><!--开发模�? -->
 	<constant name="struts.i18n.encoding" value="UTF-8" />
 
 
-	<package name="json" extends="default">
-
-		<action name="person_query" class="personAction" method="query">
-			<result name="query" type="json">
-				<param name="root">jsonMap</param>
-				<!-- 白名单 -->
-				<param name="includeProperties"></param>
-				<!-- 黑名单 -->
-				<param name="excludeProperties"></param>
-			</result>
-		</action>
-
-
-		<action name="professor_queryList" class="professorAction"
-			method="queryList">
-			<result name="queryList" type="json">
-				<param name="root">professors</param>
-			</result>
-		</action>
-		<action name="course_queryList" class="courseAction" method="queryList">
-			<result name="queryList" type="json">
-				<param name="root">courses</param>
-			</result>
-		</action>
-
-		<action name="professor_*" class="professorAction" method="{1}">
-			<result name="{1}" type="json">
-				<param name="root">jsonMap</param>
-
-			</result>
-		</action>
-
-		<action name="course_*" class="courseAction" method="{1}">
-			<result name="{1}" type="json">
-				<param name="root">jsonMap</param>
-			</result>
-		</action>
-
-		<action name="section_*" class="sectionAction" method="{1}">
-			<result name="{1}" type="json">
-				<param name="root">jsonMap</param>
-			</result>
-		</action>
-
-		<action name="transcriptEntry_*" class="transcriptEntryAction"
-			method="{1}">
-			<result name="{1}" type="json">
-				<param name="root">jsonMap</param>
-			</result>
-		</action>
-
-		<action name="student_enroll" class="studentAction" method="enroll">
-			<result name="enroll">/WEB-INF/student/index.jsp</result>
-		</action>
-
-		<action name="student_login" class="studentAction" method="login">
-			<result name="login">/WEB-INF/content/index.jsp</result>
-		</action>
-
-		<action name="student_*" class="studentAction" method="{1}">
-			<result name="{1}" type="json">
-				<param name="root">jsonMap</param>
-			</result>
-		</action>
-
-		<action name="util_*" class="utilAction" method="{1}">
-			<result name="{1}" type="json">
-				<!-- 动态设置Action的属性值 -->
-				<param name="savePath">/upload</param>
-			</result>
-		</action>
-
-	</package>
-
-	<package name="send" extends="default">
-		<!-- 请求转发 -->
-		<action name="send_*_*" class="sendAction">
-			<result>/WEB-INF/{1}/{2}.jsp</result>
-		</action>
-		<action name="*" class="sendAction">
-			<result>{1}.jsp</result>
-		</action>
-	</package>
-
+	
 	<constant name="struts.action.excludePattern" value="/static/.*?" /><!-- 
 		default locale -->
 </struts>
