@@ -26,7 +26,6 @@ public class SectionServiceImplTest {
 	private static CourseDao courseDao;
 	private static ProfessorDao professorDao;
 	private static SectionDao sectionDao;
-//	private static StudentDao studentDao;
 	private static StudentService studentService;
 	
 	@BeforeClass
@@ -35,7 +34,6 @@ public class SectionServiceImplTest {
 		courseDao=DaoFactory.getCourseDaoInstance();
 		professorDao=DaoFactory.getProfessorDaoInstance();
 		sectionDao=DaoFactory.getSectionDaoInstance();
-//		studentDao=DaoFactory.getStudentDaoInstsance();
 		studentService=ServiceFactory.getStudentServiceInstance();
 	}
 	@Test
@@ -85,7 +83,7 @@ public class SectionServiceImplTest {
 	}
 
 	@Test
-	public void testFindById() {
+	public void testGetById() {
 		System.out.println(sectionDao.getBySectionNo(25));
 	}
 
@@ -99,8 +97,6 @@ public class SectionServiceImplTest {
 		student.setId(3);
 		Section section=new Section();
 		section.setSectionNo(12);
-//		Section section=sectionDao.findById(12);
-//		Student student=studentDao.findById(1);
 		studentService.enroll(section, student);
 		
 	}

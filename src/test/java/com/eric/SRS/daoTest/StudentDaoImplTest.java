@@ -20,21 +20,21 @@ public class StudentDaoImplTest {
 	}
 
 	@Test
-	public void testFindById() {
-		System.out.println(studentDao.getByPersonId(8));
-	}
-
-	@Test
 	public void testSave() {
 		Student s1, s2, s3;
-		s1 = new Student("Joe Blow", "111-11-1111","123", "Math", "M.S.");
+		s1 = new Student("Joe Blow", "111-11-1111", "123", "Math", "M.S.");
 
-		s2 = new Student("Fred Schnurd", "222-22-2222", "123","Information Technology", "Ph. D.");
+		s2 = new Student("Fred Schnurd", "222-22-2222", "123", "Information Technology", "Ph. D.");
 
-		s3 = new Student("Mary Smith", "333-33-3333","123", "Physics", "B.S.");
+		s3 = new Student("Mary Smith", "333-33-3333", "123", "Physics", "B.S.");
 		studentDao.save(s1);
 		studentDao.save(s2);
 		studentDao.save(s3);
+	}
+
+	@Test
+	public void testGetById() {
+		System.out.println(studentDao.getByPersonId(8));
 	}
 
 	@Test

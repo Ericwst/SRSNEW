@@ -12,5 +12,13 @@ public class ScheduleOfClassesDaoImpl extends BaseDaoHibernate4<ScheduleOfClasse
 				.createQuery("select s from ScheduleOfClasses s where scheduleOfClassesId=:scheduleOfClassesId").setInteger("scheduleOfClassesId", scheduleOfClassesId);
 		return (ScheduleOfClasses) query.uniqueResult();
 	}
+
+	@Override
+	public ScheduleOfClasses getScheduleOfClass(String semester) {
+		// TODO Auto-generated method stub
+		Query query = getSessionFactory().getCurrentSession()
+				.createQuery("select s from ScheduleOfClasses s where semester=:semester").setString("semester", semester);
+		return (ScheduleOfClasses) query.uniqueResult();
+	}
 	
 }

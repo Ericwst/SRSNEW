@@ -7,8 +7,9 @@ import com.eric.SRS.model.ScheduleOfClasses;
 import com.eric.SRS.service.ScheduleOfClassesService;
 
 public class ScheduleOfClassesServiceImpl implements ScheduleOfClassesService {
-	
+
 	private ScheduleOfClassesDao scheduleOfClassesDao;
+
 
 	public void setScheduleOfClassesDao(ScheduleOfClassesDao ScheduleOfClassesDao) {
 		this.scheduleOfClassesDao = ScheduleOfClassesDao;

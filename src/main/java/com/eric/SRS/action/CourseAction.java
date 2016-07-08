@@ -7,9 +7,8 @@ import java.util.Map;
 
 import com.eric.SRS.model.Course;
 import com.eric.SRS.service.CourseService;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class CourseAction extends ActionSupport {
+public class CourseAction extends SuperAction<Course> {
 
 	private static final long serialVersionUID = 1L;
 

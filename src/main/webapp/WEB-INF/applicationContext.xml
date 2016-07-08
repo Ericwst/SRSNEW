@@ -189,15 +189,9 @@
 		<!-- 配置一个切入点 -->
 		<aop:pointcut id="ericPointcut1"
 			expression="execution(* com.eric.SRS.dao.impl.*.*(..))" />
-		<aop:pointcut id="ericPointcut2"
-			expression="execution(* com.eric.SRS.service.impl.*.*(..))" />
-		<aop:pointcut id="ericPointcut3" expression="execution(* com.eric.SRS.dao.*.*(..))" />
-		<aop:pointcut id="ericPointcut4"
-			expression="execution(* com.eric.SRS.service.*.*(..))" />
+		<aop:pointcut id="ericPointcut2" expression="execution(* com.eric.SRS.dao.*.*(..))" />
 		<!-- 指定在myPointcut切入点应用txAdvice事务增强处理 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="ericPointcut1" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="ericPointcut2" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="ericPointcut3" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="ericPointcut4" />
 	</aop:config>
 </beans>

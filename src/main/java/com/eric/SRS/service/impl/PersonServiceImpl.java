@@ -31,4 +31,13 @@ public class PersonServiceImpl implements PersonService {
 		return personDao.findAll(Person.class);
 	}
 
+	@Override
+	public Person getBySsn(Person person) {
+		return personDao.getBySsn(person);
+	}
+	
+	@Override
+	public Boolean login(Person person) {
+		return personDao.getBySsn(person).getPassword().equals(person.getPassword());
+	}
 }

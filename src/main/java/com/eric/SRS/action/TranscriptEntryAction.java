@@ -1,20 +1,21 @@
 package com.eric.SRS.action;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.eric.SRS.model.TranscriptEntry;
 import com.eric.SRS.service.TranscriptEntryService;
-import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * @author Ericwst
  *
  */
-public class TranscriptEntryAction extends ActionSupport {
+public class TranscriptEntryAction extends SuperAction<TranscriptEntry> {
 
 	private static final long serialVersionUID = 1L;
 	private TranscriptEntryService transcriptEntryService;
-	private Map<String, Object> jsonMap = new HashMap<>();
+
+	@Override
+	public String execute() throws Exception {
+		return super.execute();
+	}
 
 	public void setTranscriptEntryService(TranscriptEntryService transcriptEntryService) {
 		this.transcriptEntryService = transcriptEntryService;
@@ -24,11 +25,4 @@ public class TranscriptEntryAction extends ActionSupport {
 		return transcriptEntryService;
 	}
 
-	public void setJsonMap(Map<String, Object> jsonMap) {
-		this.jsonMap = jsonMap;
-	}
-
-	public Map<String, Object> getJsonMap() {
-		return jsonMap;
-	}
 }

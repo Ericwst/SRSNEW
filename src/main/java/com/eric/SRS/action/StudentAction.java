@@ -4,39 +4,35 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.struts2.interceptor.ServletRequestAware;
-
 import com.eric.SRS.enumeration.EnrollmentStatus;
+import com.eric.SRS.enumeration.PersonStatus;
 import com.eric.SRS.model.Section;
 import com.eric.SRS.model.Student;
 import com.eric.SRS.model.TranscriptEntry;
 import com.eric.SRS.service.StudentService;
 import com.eric.SRS.service.TranscriptEntryService;
-import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * @author Ericwst
  *
  */
-public class StudentAction extends ActionSupport implements ServletRequestAware {
+public class StudentAction extends SuperAction<Student> {
+
+	private static final long serialVersionUID = 1L;
+
+	private StudentService studentService;
+	private TranscriptEntryService transcriptEntryService;
+	private Student student;
+	private List<Student> students;
+	private int id;
+	private Map<String, Object> jsonMap = new HashMap<>();
+	private Integer sectionId;
+	private String ids;
 
 	@Override
 	public String execute() throws Exception {
 		return super.execute();
 	}
-
-	private static final long serialVersionUID = 1L;
-	private Student student;
-	private StudentService studentService;
-	private TranscriptEntryService transcriptEntryService;
-	private Map<String, Object> jsonMap = new HashMap<>();
-	private Integer sectionId;
-	private String ids;
-	private HttpSession session;
-	private HttpServletRequest request;
 
 	public void setTranscriptEntryService(TranscriptEntryService transcriptEntryService) {
 		this.transcriptEntryService = transcriptEntryService;
@@ -44,6 +40,22 @@ public class StudentAction extends ActionSupport implements ServletRequestAware 
 
 	public void setStudentService(StudentService studentService) {
 		this.studentService = studentService;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
 	}
 
 	public void setJsonMap(Map<String, Object> jsonMap) {
@@ -70,54 +82,52 @@ public class StudentAction extends ActionSupport implements ServletRequestAware 
 		return ids;
 	}
 
-	public String login() {
-		Boolean value = studentService.login(student);
-		System.out.println(value);
-		if (value) {
-			session.setAttribute("student", studentService.getBySsn(student));
+	// 处理添加学生的add()方法
+	public String add() {
+		// 调用业务逻辑组件的addBook()方法来处理用户请求
+		int result = studentService.addStudent(student);
+		if (result > 0) {
+			addActionMessage("添加成功");
+			return SUCCESS;
 		}
-		System.out.println(session.getAttribute("student"));
-		// jsonMap.put("massage", value);
-		return "login";
+		addActionError("添加失败，请重新添加");
+		return ERROR;
+	}
+
+	public String list() {
+		setStudents(studentService.getAllStudents());
+		return SUCCESS;
+	}
+
+	public String delete() {
+		studentService.deleteStudent(id);
+		return SUCCESS;
 	}
 
 	public String enroll() {
-		System.out.println("session=================" + (Student) session.getAttribute("student"));
 		Student student = (Student) session.getAttribute("student");
-		// Student student=new Student();
-		// student.setId(1);
 		Section section = new Section();
 		section.setSectionNo(sectionId);
-		// System.out.println(sectionId);
 		EnrollmentStatus enrollmentStatus = studentService.enroll(section, student);
-		System.out.println("===================enrollmentStatus:" + enrollmentStatus);
 		jsonMap.put("message", enrollmentStatus);
-		return "enroll";
+		return PersonStatus.ENROLL.toString();
 	}
 
 	public String queryTranscript() {
-		// Transcript transcript=transcriptEntryService.findByStudent(model);
 		Student student = new Student();
 		student.setId(1);
 		List<TranscriptEntry> transcriptEntries = transcriptEntryService.getByStudent(student);
-		// System.out.println("=============transcript=======");
-		// System.out.println(transcriptEntries);
 		jsonMap.put("rows", transcriptEntries);
 		jsonMap.put("total", transcriptEntries.size());
-		return "queryTranscript";
+		return PersonStatus.TRANSCRIPT.toString();
 	}
 
 	public String deleteTranscript() {
-		// System.out.println(ids);
 		for (int i = 0; i < ids.split(",").length; i++) {
 			transcriptEntryService.deleteSection(Integer.parseInt(ids.split(",")[i]));
 		}
 		jsonMap.put("message", true);
-		return "queryTranscript";
+		return PersonStatus.TRANSCRIPT.toString();
 	}
 
-	public void setServletRequest(HttpServletRequest request) {
-		this.request = request;
-		this.session = this.request.getSession();
-	}
 }

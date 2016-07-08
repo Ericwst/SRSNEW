@@ -10,6 +10,7 @@ import com.eric.SRS.dao.SectionDao;
 import com.eric.SRS.dao.StudentDao;
 import com.eric.SRS.dao.TranscriptEntryDao;
 import com.eric.SRS.enumeration.EnrollmentStatus;
+import com.eric.SRS.model.Person;
 import com.eric.SRS.model.Section;
 import com.eric.SRS.model.Student;
 import com.eric.SRS.model.Transcript;
@@ -62,10 +63,7 @@ public class StudentServiceImpl implements StudentService {
 		studentDao.delete(Student.class, id);
 	}
 
-	@Override
-	public Student getBySsn(Student student) {
-		return studentDao.getBySsn(student);
-	}
+
 
 	public EnrollmentStatus enroll(Section section, Student student) {
 		Transcript transcript = new Transcript();
@@ -85,10 +83,7 @@ public class StudentServiceImpl implements StudentService {
 		}
 
 		section.setEnrolledStudents(enrollStudents);
-		// section.setTranscriptEntries(transcriptEntryDao.findBySection(section));
 		EnrollmentStatus enrollmentStatus = section.enroll(student);
-		// EnrollmentStatus enrollmentStatus=EnrollmentStatus.success;
-		// student.addSection(section);
 		if (enrollmentStatus.equals(EnrollmentStatus.success)) {
 			TranscriptEntry transcriptEntry = new TranscriptEntry();
 			transcriptEntry.setStudent(student);
@@ -98,8 +93,5 @@ public class StudentServiceImpl implements StudentService {
 		return enrollmentStatus;
 	}
 
-	@Override
-	public Boolean login(Student student) {
-		return studentDao.getBySsn(student).getPassword().equals(student.getPassword());
-	}
+
 }

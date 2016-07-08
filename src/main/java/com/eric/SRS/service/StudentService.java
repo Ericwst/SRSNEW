@@ -16,8 +16,4 @@ public interface StudentService {
 
 	void deleteStudent(int id);
 
-	public Boolean login(Student student);
-	
-	public Student getBySsn(Student student);
-
 }

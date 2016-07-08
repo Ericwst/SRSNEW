@@ -12,5 +12,8 @@ public class PersonDaoImpl extends BaseDaoHibernate4<Person> implements PersonDa
 				.setString("personId", personId);
 		return (Person) query.uniqueResult();
 	}
-
+	@Override
+	public Person getBySsn(Person person) {
+		return find(" from Person  where ssn like '"+person.getSsn()+"'").get(0);
+	}
 }

@@ -1,0 +1,32 @@
+#navcon {
+	margin-right: 0px;
+}
+
+#list_00 img {
+	margin-top: 50px;
+	width: 144px;
+	height: 144px;
+}
+
+.jianxi {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.xiala {
+	color: #B5CAA0;
+}
+
+a {
+	color: white;
+	font-size: 15pt;
+	font-family: 宋体;
+}
+
+a:hover {
+	color: #81C7D4;
+}
+
+.row {
+	margin: 0px;
+}

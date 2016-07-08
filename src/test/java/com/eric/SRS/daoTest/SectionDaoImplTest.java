@@ -25,7 +25,7 @@ public class SectionDaoImplTest {
 	}
 
 	@Test
-	public void testFindById() {
+	public void testGetById() {
 		System.out.println(sectionDao.getBySectionNo(16));
 	}
 

@@ -7,9 +7,8 @@ import java.util.Map;
 
 import com.eric.SRS.model.Professor;
 import com.eric.SRS.service.ProfessorService;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class ProfessorAction extends ActionSupport {
+public class ProfessorAction extends SuperAction<Professor> {
 	
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> jsonMap = new HashMap<>();
@@ -18,6 +17,11 @@ public class ProfessorAction extends ActionSupport {
 	private ProfessorService professorService;
 	private String ids;
 
+	@Override
+	public String execute() throws Exception {
+		return super.execute();
+	}
+	
 	public void setProfessorService(ProfessorService professorService) {
 		this.professorService = professorService;
 	}
@@ -54,9 +58,7 @@ public class ProfessorAction extends ActionSupport {
 	}
 
 	public String queryList() {
-		// List<Professor> professors=professorService.findAll();
 		professors.addAll(professorService.getAllProfessors());
-		// jsonMap.put("rows", professors);
 		return "queryList";
 	}
 

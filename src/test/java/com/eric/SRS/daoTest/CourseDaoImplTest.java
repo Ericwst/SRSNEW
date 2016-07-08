@@ -55,7 +55,7 @@ public class CourseDaoImplTest {
 	}
 
 	@Test
-	public void testFindByCourseId() {
+	public void testGetByCourseId() {
 		System.out.println(courseDao.getByCourseId(1));
 	}
 

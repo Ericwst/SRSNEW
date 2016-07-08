@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "person")
-public abstract class Person implements java.io.Serializable{
+public abstract class Person implements java.io.Serializable {
 	/**
 	 * 
 	 */
@@ -20,19 +20,21 @@ public abstract class Person implements java.io.Serializable{
 	// ------------
 	// Attributes.
 	// ------------
-	@Id @Column(name="person_id")
+	@Id
+	@Column(name = "person_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name = "ssn", length = 50, unique = true, nullable = false)
 	private String ssn;
 	private String name;
 	private String password;
+	private String status;
 
 	// ----------------
 	// Constructor(s).
 	// ----------------
 
-	public Person(String name, String ssn,String password) {
+	public Person(String name, String ssn, String password) {
 		this.setName(name);
 		this.setSsn(ssn);
 		this.setPassword(password);
@@ -41,6 +43,7 @@ public abstract class Person implements java.io.Serializable{
 	public Person() {
 		this.setName("?");
 		this.setSsn("???-??-????");
+		this.setPassword("???-??-????");
 	}
 
 	// ------------------
@@ -78,6 +81,15 @@ public abstract class Person implements java.io.Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	// -----------------------------
 	// Miscellaneous other methods.
 	// -----------------------------

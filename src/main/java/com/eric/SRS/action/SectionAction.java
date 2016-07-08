@@ -8,19 +8,24 @@ import com.eric.SRS.model.Section;
 import com.eric.SRS.model.TranscriptEntry;
 import com.eric.SRS.service.SectionService;
 import com.eric.SRS.service.TranscriptEntryService;
-import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * @author Ericwst
  *
  */
-public class SectionAction extends ActionSupport {
+public class SectionAction extends SuperAction<Section> {
 	private static final long serialVersionUID = 1L;
 	private SectionService sectionService;
 	private TranscriptEntryService transcriptEntryService;
 	private String ids;
 	private Map<String, Object> jsonMap = new HashMap<>();
 	private Section section;
+	
+	@Override
+	public String execute() throws Exception {
+		return super.execute();
+	}
+	
 	
 	public void setSectionService(SectionService sectionService) {
 		this.sectionService = sectionService;
@@ -50,11 +55,6 @@ public class SectionAction extends ActionSupport {
 		return ids;
 	}
 
-
-	@Override
-	public String execute() throws Exception {
-		return super.execute();
-	}
 
 	public String query() {
 		List<Section> sections = sectionService.getAllSections();
