@@ -11,11 +11,10 @@ import com.eric.SRS.service.ProfessorService;
 public class ProfessorAction extends SuperAction<Professor> {
 	
 	private static final long serialVersionUID = 1L;
-	private Map<String, Object> jsonMap = new HashMap<>();
 	private List<Professor> professors = new ArrayList<>();
 	private Professor professor;
 	private ProfessorService professorService;
-	private String ids;
+	private int id;
 
 	@Override
 	public String execute() throws Exception {
@@ -26,21 +25,6 @@ public class ProfessorAction extends SuperAction<Professor> {
 		this.professorService = professorService;
 	}
 
-	public void setIds(String ids) {
-		this.ids = ids;
-	}
-
-	public String getIds() {
-		return ids;
-	}
-
-	public void setJsonMap(Map<String, Object> jsonMap) {
-		this.jsonMap = jsonMap;
-	}
-
-	public Map<String, Object> getJsonMap() {
-		return jsonMap;
-	}
 
 	public void setProfessors(List<Professor> professors) {
 		this.professors = professors;
@@ -50,11 +34,9 @@ public class ProfessorAction extends SuperAction<Professor> {
 		return professors;
 	}
 
-	public String query() {
+	public List<Professor> query() {
 		List<Professor> professors = professorService.getAllProfessors();
-		jsonMap.put("rows", professors);
-		jsonMap.put("total", professors.size());
-		return "query";
+		return professors;
 	}
 
 	public String queryList() {
@@ -63,23 +45,17 @@ public class ProfessorAction extends SuperAction<Professor> {
 	}
 
 	public String delete() {
-		System.out.println(ids);
-		for (int i = 0; i < ids.split(",").length; i++) {
-			professorService.deleteProfessor(Integer.parseInt(ids.split(",")[i]));
-		}
-		jsonMap.put("message", true);
+			professorService.deleteProfessor(id);
 		return "delete";
 	}
 
 	public String save() {
 		professorService.addProfessor(professor);
-		jsonMap.put("message", true);
 		return "save";
 	}
 
 	public String update() {
 		professorService.updateProfessor(professor);
-		jsonMap.put("message", true);
 		return "update";
 	}
 

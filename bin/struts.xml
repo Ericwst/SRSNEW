@@ -29,20 +29,20 @@
 
 
 		<!-- 登录 -->
-<!-- 		<action name="person_login" class="personAction" method="login">
+ 		<action name="person_login" class="personAction" method="login">
 			<result name="student">/WEB-INF/student/index.jsp</result>
 			<result name="professor">/WEB-INF/professor/index.jsp</result>
 		</action>
- -->
+ 
 
 		<!-- 学生选课 -->
-		<!-- <action name="student_scheduleOfClasses" class="sheduleOfClassesAction" 
+		 <action name="student_scheduleOfClasses" class="sheduleOfClassesAction" 
 			method="sheduleOfClasses"> <result name="sheduleOfClasses" type="json"> <param 
-			name="root">jsonMap</param> </result> </action> -->
+			name="root">jsonMap</param> </result> </action> 
 
 		<!-- 学生选课 -->
-		<!-- <action name="student_*" class="studentAction" method="{1}"> <result 
-			name="{1}" type="json"> <param name="root">jsonMap</param> </result> </action> -->
+		 <action name="student_*" class="studentAction" method="{1}"> <result 
+			name="{1}" type="json"> <param name="root">jsonMap</param> </result> </action> 
 
 		<action name="*_*">
 			<result>/WEB-INF/{1}/{2}.jsp</result>

@@ -17,7 +17,7 @@ public class SectionAction extends SuperAction<Section> {
 	private static final long serialVersionUID = 1L;
 	private SectionService sectionService;
 	private TranscriptEntryService transcriptEntryService;
-	private String ids;
+	private int sectionId;
 	private Map<String, Object> jsonMap = new HashMap<>();
 	private Section section;
 	
@@ -47,60 +47,34 @@ public class SectionAction extends SuperAction<Section> {
 		return jsonMap;
 	}
 
-	public void setIds(String ids) {
-		this.ids = ids;
-	}
-
-	public String getIds() {
-		return ids;
-	}
 
 
-	public String query() {
+	public List<Section> query() {
 		List<Section> sections = sectionService.getAllSections();
-		jsonMap.put("rows", sections);
-		jsonMap.put("total", sections.size());
-		return "query";
+		return sections;
 	}
 
-	public String oldSection() {
-		List<Section> sections = sectionService.getAllSections();
-		System.out.println("=============================" + sections);
-		jsonMap.put("rows", sections);
-		jsonMap.put("total", sections.size());
-		System.out.println("==============================================" + sections);
-		return "oldSection";
-	}
 
 	public String delete() {
-		System.out.println(ids);
-		for (int i = 0; i < ids.split(",").length; i++) {
-			sectionService.deleteSection(Integer.parseInt(ids.split(",")[i]));
-		}
-		jsonMap.put("message", true);
+			sectionService.deleteSection(sectionId);
 		return "delete";
 	}
 
 	public String save() {
 		sectionService.addSection(section);
-		System.out.println(section);
 		jsonMap.put("message", true);
 		return "delete";
 	}
 
 	public String update() {
 		sectionService.updateSection(section);
-		System.out.println(section);
 		jsonMap.put("mamege", true);
 		return "update";
 	}
 
-	public String studentTranscript() {
+	public List<TranscriptEntry> studentTranscript() {
 		List<TranscriptEntry> transcriptEntries = transcriptEntryService.getBySection(section);
-		System.out.println(section);
-		jsonMap.put("rows", transcriptEntries);
-		jsonMap.put("total", transcriptEntries.size());
-		return "studentTranscript";
+		return transcriptEntries;
 	}
 
 }

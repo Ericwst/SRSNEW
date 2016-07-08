@@ -24,10 +24,9 @@ public class StudentAction extends SuperAction<Student> {
 	private TranscriptEntryService transcriptEntryService;
 	private Student student;
 	private List<Student> students;
-	private int id;
 	private Map<String, Object> jsonMap = new HashMap<>();
 	private Integer sectionId;
-	private String ids;
+	private int id;
 
 	@Override
 	public String execute() throws Exception {
@@ -74,14 +73,6 @@ public class StudentAction extends SuperAction<Student> {
 		return sectionId;
 	}
 
-	public void setIds(String ids) {
-		this.ids = ids;
-	}
-
-	public String getIds() {
-		return ids;
-	}
-
 	// 处理添加学生的add()方法
 	public String add() {
 		// 调用业务逻辑组件的addBook()方法来处理用户请求
@@ -113,20 +104,15 @@ public class StudentAction extends SuperAction<Student> {
 		return PersonStatus.ENROLL.toString();
 	}
 
-	public String queryTranscript() {
+	public List<TranscriptEntry> selectTranscript() {
 		Student student = new Student();
 		student.setId(1);
 		List<TranscriptEntry> transcriptEntries = transcriptEntryService.getByStudent(student);
-		jsonMap.put("rows", transcriptEntries);
-		jsonMap.put("total", transcriptEntries.size());
-		return PersonStatus.TRANSCRIPT.toString();
+		return transcriptEntries;
 	}
 
 	public String deleteTranscript() {
-		for (int i = 0; i < ids.split(",").length; i++) {
-			transcriptEntryService.deleteSection(Integer.parseInt(ids.split(",")[i]));
-		}
-		jsonMap.put("message", true);
+		transcriptEntryService.deleteSection(sectionId);
 		return PersonStatus.TRANSCRIPT.toString();
 	}
 
