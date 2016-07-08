@@ -38,3 +38,9 @@
   数据结构通过Hibernate注解标注model实体类，实现了类与数据的分离，借助ORM工具持久化类。
   
 8至少需要实现的功能：学生登录、课程查询并选课（模型实现选课逻辑），课程、教师增删查改，学生成绩查询，课程选课情况查询（哪些人选了）
+###登陆
+    ![database]( https://raw.githubusercontent.com/Ericwst/SRSNEW/master/picture/11.jpg "title")
+###教师增删查改
+![database]( https://raw.githubusercontent.com/Ericwst/SRSNEW/master/picture/12.jpg "title")
+###学生选课
+![database]( https://raw.githubusercontent.com/Ericwst/SRSNEW/master/picture/13.jpg "title")
